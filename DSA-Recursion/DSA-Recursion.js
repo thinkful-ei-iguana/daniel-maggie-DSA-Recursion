@@ -41,39 +41,50 @@
 
 /////////////////
 
-function splitString(string, separator) {
-  //base
-  if (!string.includes(separator)) {
-    return [string];
-  }
-  console.log(string)
-  //recursive
-  const sepIndex = string.indexOf(separator);
-  const stringSegment = string.slice(0, sepIndex);
-  return [stringSegment, ...splitString(string.slice(sepIndex + 1), separator)];
-}
+// function splitString(string, separator) {
+//   //base
+//   if (!string.includes(separator)) {
+//     return [string];
+//   }
+//   console.log(string)
+//   //recursive
+//   const sepIndex = string.indexOf(separator);
+//   const stringSegment = string.slice(0, sepIndex);
+//   return [stringSegment, ...splitString(string.slice(sepIndex + 1), separator)];
+// }
 
-console.log(splitString('02/20/2020', '/'));
+// console.log(splitString('02/20/2020', '/'));
 
 //////////////////
-const fibMemo = {}
-function fib(n) {
-  //base 
-  if (n === 1 || n ===2) {
-    if (!fibMemo[n]) {
-      fibMemo[n] = 1;
-      console.log(1);
-    }
+// const fibMemo = {}
+// function fib(n) {
+//   //base 
+//   if (n === 1 || n ===2) {
+//     if (!fibMemo[n]) {
+//       fibMemo[n] = 1;
+//       console.log(1);
+//     }
+//     return 1;
+//   }
+
+//   if (!fibMemo[n]) {
+//     fibMemo[n] = fib(n-1) + fib(n-2)
+//     console.log(fibMemo[n]);
+//   }
+//   //recursive
+
+//   return fibMemo[n]
+// }
+// fib(7);
+
+///////////
+
+
+function factorialize(num) {
+  if (num === 1) {
     return 1;
   }
-  
-  if (!fibMemo[n]) {
-    fibMemo[n] = fib(n-1) + fib(n-2)
-    console.log(fibMemo[n]);
-  }
-  //recursive
 
-  return fibMemo[n]
+  return num * factorialize(num - 1);
 }
-fib(7);
-
+console.log(factorialize(3));
