@@ -55,12 +55,25 @@ function splitString(string, separator) {
 
 console.log(splitString('02/20/2020', '/'));
 
+//////////////////
+const fibMemo = {}
 function fib(n) {
-  if (n === 1) return [1];
-  if (n === 2) return [1, 1];
+  //base 
+  if (n === 1 || n ===2) {
+    if (!fibMemo[n]) {
+      fibMemo[n] = 1;
+      console.log(1);
+    }
+    return 1;
+  }
+  
+  if (!fibMemo[n]) {
+    fibMemo[n] = fib(n-1) + fib(n-2)
+    console.log(fibMemo[n]);
+  }
+  //recursive
 
-  return [...fib(n-1), fib(n-1)[fib(n-1).length-1] + fib(n-2)[fib(n-2).length-1]]
+  return fibMemo[n]
 }
-
-console.log(fib(7));
+fib(7);
 
