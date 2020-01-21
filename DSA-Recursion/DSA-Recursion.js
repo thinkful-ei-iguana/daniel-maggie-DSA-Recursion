@@ -28,3 +28,13 @@ function reverseString(string) {
 }
 
 console.log(reverseString('pizza'));
+
+
+function trian(n) {
+  //base 
+  if (n === 1) return 1; 
+  // recursive
+  return n + trian(n-1)
+}
+console.log(trian(7));
+
