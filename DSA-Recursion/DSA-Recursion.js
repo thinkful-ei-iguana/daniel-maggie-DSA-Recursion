@@ -54,3 +54,13 @@ function splitString(string, separator) {
 }
 
 console.log(splitString('02/20/2020', '/'));
+
+function fib(n) {
+  if (n === 1) return [1];
+  if (n === 2) return [1, 1];
+
+  return [...fib(n-1), fib(n-1)[fib(n-1).length-1] + fib(n-2)[fib(n-2).length-1]]
+}
+
+console.log(fib(7));
+
