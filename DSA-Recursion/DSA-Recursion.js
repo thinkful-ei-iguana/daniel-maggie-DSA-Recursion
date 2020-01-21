@@ -1,20 +1,30 @@
-function sheepJump(sheep) {
-  if (sheep === 0) {
-    return console.log('All sheep jumped over the fence');
+// function sheepJump(sheep) {
+//   if (sheep === 0) {
+//     return console.log('All sheep jumped over the fence');
+//   }
+//   console.log(`${sheep}: Another sheep jumps over the fence`);
+//   sheepJump(sheep - 1);
+// }
+// sheepJump(3);
+
+// function powerCalc(base, exp) {
+//   if (exp <= 0) return -1;
+//   //base
+//   if (exp === 1) return base;
+
+//   //recursion
+//   return base * (powerCalc(base, exp-1));
+// }
+// console.log(powerCalc(2, 2));
+
+////////
+
+function reverseString(string) {
+  if (!string.length) {
+    return '';
   }
-  console.log(`${sheep}: Another sheep jumps over the fence`);
-  sheepJump(sheep - 1);
+  const letter = string[0];
+  return reverseString(string.slice(1)) + letter;
 }
-sheepJump(3);
 
-function powerCalc(base, exp) {
-  if (exp <= 0) return -1;
-  //base
-  if (exp === 1) return base;
-
-  //recursion
-  return base * (powerCalc(base, exp-1));
-}
-console.log(powerCalc(2, 2));
-
-
+console.log(reverseString('pizza'));
