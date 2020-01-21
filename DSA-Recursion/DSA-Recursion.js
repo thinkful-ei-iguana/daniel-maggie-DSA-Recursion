@@ -91,6 +91,73 @@ console.log(factorialize(3));
 
 
 //////////////////////////////////////
+// const maze = [
+//   [' ', ' ', ' ', '*', ' ', ' ', ' '],
+//   ['*', '*', ' ', '*', ' ', '*', ' '],
+//   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+//   [' ', '*', '*', '*', '*', '*', ' '],
+//   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+// ];
+
+// function escape(maze, str='') {
+//   console.log(str);
+//   const rs = str.split('').filter(c => c === 'R').length;
+//   const ls = str.split('').filter(c => c === 'L').length;
+//   const us = str.split('').filter(c => c === 'U').length;
+//   const ds = str.split('').filter(c => c === 'D').length;
+//   const x = rs - ls;
+//   const y = ds - us;
+
+//   let up;
+//   let right;
+//   let down;
+//   let left;
+//   if (maze[y - 1]) up = maze[y - 1][x];
+//   right = maze[y][x + 1];
+//   if (maze[y + 1]) down = maze[y + 1][x];
+//   left = maze[y][x-1];
+
+//   //base
+//   if ( // if no possible moves
+//     (up === undefined || up === '*') &&
+//     (right === undefined || right === '*') &&
+//     (down === undefined || down === '*') &&
+//     (left === undefined || left === '*')
+//   ) {console.log('nope'); return;}
+//   // if exit is found;
+//   if (up === 'e') return str + 'U';
+//   if (right === 'e') return str + 'R';
+//   if (down === 'e') return str + 'D';
+//   if (left === 'e') return str + 'L';
+
+//   //recursive
+//   if (up && up !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     return escape(newMaze, str + 'U');
+//   }
+//   if (right && right !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     return escape(newMaze, str + 'R');
+//   }
+//   if (down && down !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     return escape(newMaze, str + 'D');
+//   }
+//   if (left && left !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     return escape(newMaze, str + 'L');
+//   }
+// }
+
+// console.log(escape(maze));
+
+
+/////////
+
 const maze = [
   [' ', ' ', ' ', '*', ' ', ' ', ' '],
   ['*', '*', ' ', '*', ' ', '*', ' '],
@@ -99,8 +166,8 @@ const maze = [
   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
 ];
 
-function escape(maze, str='') {
-  console.log(str);
+function escape(maze, str = '') {
+  // console.log(str);
   const rs = str.split('').filter(c => c === 'R').length;
   const ls = str.split('').filter(c => c === 'L').length;
   const us = str.split('').filter(c => c === 'U').length;
@@ -115,7 +182,7 @@ function escape(maze, str='') {
   if (maze[y - 1]) up = maze[y - 1][x];
   right = maze[y][x + 1];
   if (maze[y + 1]) down = maze[y + 1][x];
-  left = maze[y][x-1];
+  left = maze[y][x - 1];
 
   //base
   if ( // if no possible moves
@@ -123,34 +190,34 @@ function escape(maze, str='') {
     (right === undefined || right === '*') &&
     (down === undefined || down === '*') &&
     (left === undefined || left === '*')
-  ) {console.log('nope'); return;}
+  ) { return; }
   // if exit is found;
-  if (up === 'e') return str + 'U';
-  if (right === 'e') return str + 'R';
-  if (down === 'e') return str + 'D';
-  if (left === 'e') return str + 'L';
+  if (up === 'e') console.log(str + 'U');
+  if (right === 'e') console.log(str + 'R');
+  if (down === 'e') console.log(str + 'D');
+  if (left === 'e') console.log(str + 'L');
 
   //recursive
   if (up && up !== '*') {
     const newMaze = [...maze].map(line => [...line]);
     newMaze[y][x] = '*';
-    return escape(newMaze, str + 'U');
+    escape(newMaze, str + 'U');
   }
   if (right && right !== '*') {
     const newMaze = [...maze].map(line => [...line]);
     newMaze[y][x] = '*';
-    return escape(newMaze, str + 'R');
+    escape(newMaze, str + 'R');
   }
   if (down && down !== '*') {
     const newMaze = [...maze].map(line => [...line]);
     newMaze[y][x] = '*';
-    return escape(newMaze, str + 'D');
+    escape(newMaze, str + 'D');
   }
   if (left && left !== '*') {
     const newMaze = [...maze].map(line => [...line]);
     newMaze[y][x] = '*';
-    return escape(newMaze, str + 'L');
+    escape(newMaze, str + 'L');
   }
 }
 
-console.log(escape(maze));
+escape(maze);
