@@ -19,22 +19,38 @@
 
 ////////
 
-function reverseString(string) {
-  if (!string.length) {
-    return '';
+// function reverseString(string) {
+//   if (!string.length) {
+//     return '';
+//   }
+//   const letter = string[0];
+//   return reverseString(string.slice(1)) + letter;
+// }
+
+// console.log(reverseString('pizza'));
+
+///////////////////
+
+// function trian(n) {
+//   //base 
+//   if (n === 1) return 1; 
+//   // recursive
+//   return n + trian(n-1)
+// }
+// console.log(trian(7));
+
+/////////////////
+
+function splitString(string, separator) {
+  //base
+  if (!string.includes(separator)) {
+    return [string];
   }
-  const letter = string[0];
-  return reverseString(string.slice(1)) + letter;
+  console.log(string)
+  //recursive
+  const sepIndex = string.indexOf(separator);
+  const stringSegment = string.slice(0, sepIndex);
+  return [stringSegment, ...splitString(string.slice(sepIndex + 1), separator)];
 }
 
-console.log(reverseString('pizza'));
-
-
-function trian(n) {
-  //base 
-  if (n === 1) return 1; 
-  // recursive
-  return n + trian(n-1)
-}
-console.log(trian(7));
-
+console.log(splitString('02/20/2020', '/'));
