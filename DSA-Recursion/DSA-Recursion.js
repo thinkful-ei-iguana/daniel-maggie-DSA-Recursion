@@ -80,14 +80,14 @@
 ///////////
 
 
-function factorialize(num) {
-  if (num === 1) {
-    return 1;
-  }
+// function factorialize(num) {
+//   if (num === 1) {
+//     return 1;
+//   }
 
-  return num * factorialize(num - 1);
-}
-console.log(factorialize(3));
+//   return num * factorialize(num - 1);
+// }
+// console.log(factorialize(3));
 
 
 //////////////////////////////////////
@@ -158,66 +158,87 @@ console.log(factorialize(3));
 
 /////////
 
-const maze = [
-  [' ', ' ', ' ', '*', ' ', ' ', ' '],
-  ['*', '*', ' ', '*', ' ', '*', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', '*', '*', '*', '*', '*', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
-];
+// const maze = [
+//   [' ', ' ', ' ', '*', ' ', ' ', ' '],
+//   ['*', '*', ' ', '*', ' ', '*', ' '],
+//   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+//   [' ', '*', '*', '*', '*', '*', ' '],
+//   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+// ];
 
-function escape(maze, str = '') {
-  // console.log(str);
-  const rs = str.split('').filter(c => c === 'R').length;
-  const ls = str.split('').filter(c => c === 'L').length;
-  const us = str.split('').filter(c => c === 'U').length;
-  const ds = str.split('').filter(c => c === 'D').length;
-  const x = rs - ls;
-  const y = ds - us;
+// function escape(maze, str = '') {
+//   // console.log(str);
+//   const rs = str.split('').filter(c => c === 'R').length;
+//   const ls = str.split('').filter(c => c === 'L').length;
+//   const us = str.split('').filter(c => c === 'U').length;
+//   const ds = str.split('').filter(c => c === 'D').length;
+//   const x = rs - ls;
+//   const y = ds - us;
 
-  let up;
-  let right;
-  let down;
-  let left;
-  if (maze[y - 1]) up = maze[y - 1][x];
-  right = maze[y][x + 1];
-  if (maze[y + 1]) down = maze[y + 1][x];
-  left = maze[y][x - 1];
+//   let up;
+//   let right;
+//   let down;
+//   let left;
+//   if (maze[y - 1]) up = maze[y - 1][x];
+//   right = maze[y][x + 1];
+//   if (maze[y + 1]) down = maze[y + 1][x];
+//   left = maze[y][x - 1];
 
-  //base
-  if ( // if no possible moves
-    (up === undefined || up === '*') &&
-    (right === undefined || right === '*') &&
-    (down === undefined || down === '*') &&
-    (left === undefined || left === '*')
-  ) { return; }
-  // if exit is found;
-  if (up === 'e') console.log(str + 'U');
-  if (right === 'e') console.log(str + 'R');
-  if (down === 'e') console.log(str + 'D');
-  if (left === 'e') console.log(str + 'L');
+//   //base
+//   if ( // if no possible moves
+//     (up === undefined || up === '*') &&
+//     (right === undefined || right === '*') &&
+//     (down === undefined || down === '*') &&
+//     (left === undefined || left === '*')
+//   ) { return; }
+//   // if exit is found;
+//   if (up === 'e') console.log(str + 'U');
+//   if (right === 'e') console.log(str + 'R');
+//   if (down === 'e') console.log(str + 'D');
+//   if (left === 'e') console.log(str + 'L');
 
-  //recursive
-  if (up && up !== '*') {
-    const newMaze = [...maze].map(line => [...line]);
-    newMaze[y][x] = '*';
-    escape(newMaze, str + 'U');
+//   //recursive
+//   if (up && up !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     escape(newMaze, str + 'U');
+//   }
+//   if (right && right !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     escape(newMaze, str + 'R');
+//   }
+//   if (down && down !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     escape(newMaze, str + 'D');
+//   }
+//   if (left && left !== '*') {
+//     const newMaze = [...maze].map(line => [...line]);
+//     newMaze[y][x] = '*';
+//     escape(newMaze, str + 'L');
+//   }
+// }
+
+// escape(maze);
+
+/////////
+
+function anagramCreator(string) {
+  if (string.length === 0) {
+    return [];
   }
-  if (right && right !== '*') {
-    const newMaze = [...maze].map(line => [...line]);
-    newMaze[y][x] = '*';
-    escape(newMaze, str + 'R');
+
+  let anagramArr = [];
+  for (let word of anagramCreator(string.slice(1))) {
+    for (let i = 0; i <= word.length; i++) {
+      anagramArr.push(word.slice(0, i) + string[0] + word.slice(i, word.length - 1))
+    }
+
   }
-  if (down && down !== '*') {
-    const newMaze = [...maze].map(line => [...line]);
-    newMaze[y][x] = '*';
-    escape(newMaze, str + 'D');
-  }
-  if (left && left !== '*') {
-    const newMaze = [...maze].map(line => [...line]);
-    newMaze[y][x] = '*';
-    escape(newMaze, str + 'L');
-  }
+  return anagramArr;
+
+
 }
 
-escape(maze);
+console.log(anagramCreator('east'));
